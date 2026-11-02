@@ -6,12 +6,11 @@ test('Check header', async ({ page }) => {
   await expect(header).toBeVisible();
 });
 
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test('Check card list items', async ({ page }) => {
+  await page.goto('');
+  const firstCard = page.getByTestId('catCard_0');
+  const cardListItems = page.getByTestId(/catCard/);
 
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
-
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
+  await expect(firstCard).toBeVisible();
+  expect(await cardListItems.count()).toBeGreaterThan(0);
 });
