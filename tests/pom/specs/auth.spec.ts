@@ -21,7 +21,7 @@ test.describe('Auth', () => {
   test('Sign up', async ({ homePage, authPage }) => {
     createUserEmail = `${Date.now()}@test.ru`;
     await homePage.open();
-    await authPage.signUp('Тест', testUsers.existing.email, testUsers.existing.password);
+    await authPage.signUp('Тест', createUserEmail, testUsers.existing.password);
     await authPage.assertSignIn();
   });
 });

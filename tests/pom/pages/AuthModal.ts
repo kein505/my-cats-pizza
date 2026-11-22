@@ -9,13 +9,20 @@ export class AuthModal {
     await this.page.getByTestId('signInButton').click();
   }
 
+  async openRegisterButton() {
+    await this.page.getByTestId('registerButton').click();
+  }
+
   async signIn(email: string, password: string) {
+    await this.open();
     await this.page.getByLabel('Email').fill(email);
     await this.page.getByLabel('Пароль:').fill(password);
     await this.page.getByTestId('signInOrSignUpButton').click();
   }
 
   async signUp(name: string, email: string, password: string) {
+    await this.open();
+    await this.openRegisterButton();
     await this.page.getByLabel('Имя').fill(name);
     await this.page.getByLabel('Email').fill(email);
     await this.page.getByLabel('Пароль:', { exact: true }).fill(password);
@@ -24,6 +31,6 @@ export class AuthModal {
   }
 
   async assertSignIn() {
-    expect(this.page.getByTestId('signOutButton')).toBeVisible();
+    await expect(this.page.getByTestId('signOutButton')).toBeVisible();
   }
 }
