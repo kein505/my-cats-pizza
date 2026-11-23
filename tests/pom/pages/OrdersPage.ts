@@ -10,6 +10,6 @@ export class OrdersPage {
   }
 
   async assertHasOrder() {
-    expect(await this.page.getByTestId('ordersList').getByRole('listitem').first()).toBeVisible();
+    await expect(this.page.getByTestId('ordersList').getByRole('listitem').first()).toBeVisible();
   }
 }
